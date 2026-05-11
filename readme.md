@@ -1,3 +1,4 @@
+
 # Full Exchange
 
 A microservices-style crypto exchange prototype built with Node.js and TypeScript. It includes a REST API, matching engine, Redis-based messaging, WebSocket market streams, TimescaleDB persistence, a market maker, external market-data views, and a Next.js trading frontend.
@@ -6,6 +7,22 @@ A microservices-style crypto exchange prototype built with Node.js and TypeScrip
 ## Architecture
 
 <img width="1347" height="657" alt="Screenshot 2026-05-12 021848" src="https://github.com/user-attachments/assets/2c9cf186-e476-44a3-8ae8-ce712cd06260" />
+
+## Screenshots
+
+### Trading Page
+
+<img width="1906" height="838" alt="Full trading page" src="https://github.com/user-attachments/assets/2a464c50-baa8-40fc-9a72-ff180fe28d2d" />
+
+### Recent Trades
+
+<img width="395" height="651" alt="Recent trades panel" src="https://github.com/user-attachments/assets/657a46e8-ec33-472c-b856-6c93828e2404" />
+
+### Order History
+
+<img width="1436" height="542" alt="Order history page" src="https://github.com/user-attachments/assets/b8da424f-96ae-44fd-b272-eb81196e6228" />
+
+
 
 The project is split into independent services:
 

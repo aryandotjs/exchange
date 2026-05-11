@@ -1,0 +1,20 @@
+ version: '3.8' 
+
+ services:
+    
+    redis: 
+      image: redis:alpine 
+      container_name: exchange-redis 
+      ports:
+         - '6379:6379'
+    
+
+    db:
+     image: timescale/timescaledb:latest-pg16 
+     container_name: exchange-db
+     environment:
+        - POSTGRES_USER=user
+        - POSTGRES_PASSWORD=secret123
+        - POSTGRES_DB=exchange_db
+     ports:
+        - '5432:5432'

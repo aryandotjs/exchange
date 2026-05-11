@@ -1,0 +1,7 @@
+node_modules/
+.next/
+dist/
+.env
+
+frontend/exchange/node_modules/
+frontend/exchange/.next/

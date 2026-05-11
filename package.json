@@ -1,0 +1,57 @@
+{
+  "name": "full-exchange",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:api": "tsx watch api/index.ts",
+    "db:setup": "npm run db:init && npm run db:worker",
+    "db:init": "tsx  db/seedsdb.ts",
+    "db:worker": "tsx watch db/index.ts",
+    "dev:engine": "tsx watch engine/index.ts",
+    "dev:ws": "tsx watch ws/index.ts",
+    "dev:kline": "tsx watch db/klinerefresh.ts",
+    "dev:backend": "concurrently -n \"DB,API,ENG,WS,KL\" -c \"magenta,cyan,yellow,white,green\" \"npm run db:setup\" \"npm run dev:api\" \"npm run dev:engine\" \"npm run dev:ws\" \"npm run dev:kline\"",
+    "dev": "npm run dev:backend",
+    "dev:mm": "tsx watch mm/index.ts",
+    "dev:frontend": "cd frontend/exchange && npm run dev"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryandotjs/FULL-EXCHANGE-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aryandotjs/FULL-EXCHANGE-/issues"
+  },
+  "homepage": "https://github.com/aryandotjs/FULL-EXCHANGE-#readme",
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "axios": "^1.16.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.20.0",
+    "redis": "^5.11.0",
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.5.2",
+    "@types/pg": "^8.20.0",
+    "@types/ws": "^8.18.1",
+    "concurrently": "^9.2.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}

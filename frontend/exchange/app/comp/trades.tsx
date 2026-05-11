@@ -150,7 +150,7 @@ export function Trades({ market }: { market: string }) {
               <div className="flex justify-between w-[67%]">
                 <div
                   className={`tabular-nums ${
-                    a.isBuyerMaker ? "text-[#fd4b4e]" : "text-[#00c278]"
+                    !a.isBuyerMaker ? "text-[#fd4b4e]" : "text-[#00c278]"
                   }`}
                 >
                   {Number(a.price).toLocaleString()}

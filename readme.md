@@ -3,9 +3,9 @@
 A microservices-style crypto exchange prototype built with Node.js and TypeScript. It includes a REST API, matching engine, Redis-based messaging, WebSocket market streams, TimescaleDB persistence, a market maker, external market-data views, and a Next.js trading frontend.
 
 <!-- ![Architecture](./assets/architecture.png) -->
- <img width="1297" height="645" alt="Screenshot 2026-05-12 011216" src="https://github.com/user-attachments/assets/62e14fcb-15b8-478b-a23d-b01878f87c9c" />
-
 ## Architecture
+
+<img width="1347" height="657" alt="Screenshot 2026-05-12 021848" src="https://github.com/user-attachments/assets/2c9cf186-e476-44a3-8ae8-ce712cd06260" />
 
 The project is split into independent services:
 
@@ -27,6 +27,25 @@ The project is split into independent services:
 - **Frontend**: Next.js, React, Tailwind CSS
 - **Charts**: Lightweight Charts
 - **WebSocket**: `ws`
+
+
+## API Endpoints
+
+| Endpoint                      | Method |   Auth | Description             |
+| ----------------------------- | -----: | -----: | ----------------------- |
+| `/api/v1/auth/signup`         |   POST |     No | Create user             |
+| `/api/v1/auth/signin`         |   POST |     No | Sign in and receive JWT |
+| `/api/v1/auth/me`             |    GET |    Yes | Get current user        |
+| `/api/v1/orders/createOrder`  |   POST |    Yes | Create order            |
+| `/api/v1/orders/cancleOrder`  | DELETE | Manual | Cancel order            |
+| `/api/v1/orders/openOrder`    |    GET |    Yes | Get open orders         |
+| `/api/v1/orders/orderHistory` |    GET |    Yes | Get user order history  |
+| `/api/v1/orders/tradeHistory` |    GET |    Yes | Get user trade history  |
+| `/api/v1/depth/:market`       |    GET |     No | Get market depth        |
+| `/api/v1/trades/:market`      |    GET |     No | Get recent trades       |
+| `/api/v1/kline/:market`       |    GET |     No | Get kline data          |
+| `/api/v1/ticker/:market`      |    GET |     No | Get ticker data         |
+| `/api/v1/getbalance`          |    GET |    Yes | Get user balance        |
 
 ## Key Features
 
@@ -92,23 +111,6 @@ This pattern is used for:
 - Fetching balances
 - Fetching depth from the engine
 
-## API Endpoints
-
-| Endpoint                      | Method |   Auth | Description             |
-| ----------------------------- | -----: | -----: | ----------------------- |
-| `/api/v1/auth/signup`         |   POST |     No | Create user             |
-| `/api/v1/auth/signin`         |   POST |     No | Sign in and receive JWT |
-| `/api/v1/auth/me`             |    GET |    Yes | Get current user        |
-| `/api/v1/orders/createOrder`  |   POST |    Yes | Create order            |
-| `/api/v1/orders/cancleOrder`  | DELETE | Manual | Cancel order            |
-| `/api/v1/orders/openOrder`    |    GET |    Yes | Get open orders         |
-| `/api/v1/orders/orderHistory` |    GET |    Yes | Get user order history  |
-| `/api/v1/orders/tradeHistory` |    GET |    Yes | Get user trade history  |
-| `/api/v1/depth/:market`       |    GET |     No | Get market depth        |
-| `/api/v1/trades/:market`      |    GET |     No | Get recent trades       |
-| `/api/v1/kline/:market`       |    GET |     No | Get kline data          |
-| `/api/v1/ticker/:market`      |    GET |     No | Get ticker data         |
-| `/api/v1/getbalance`          |    GET |    Yes | Get user balance        |
 
 ## Market Support
 
@@ -127,18 +129,4 @@ The frontend also displays additional markets from the Backpack API. These exter
 
 Orders are matched and settled only for markets supported by the local engine.
 
-## Getting Started
 
-### Prerequisites
-
-- Node.js
-- npm
-- Docker Desktop
-
-### Environment Variables
-
-Create a `.env` file in the project root:
-
-```env
-JWT_SECRET=secret123
-```

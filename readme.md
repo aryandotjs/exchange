@@ -3,6 +3,7 @@
 A microservices-style crypto exchange prototype built with Node.js and TypeScript. It includes a REST API, matching engine, Redis-based messaging, WebSocket market streams, TimescaleDB persistence, a market maker, external market-data views, and a Next.js trading frontend.
 
 <!-- ![Architecture](./assets/architecture.png) -->
+ <img width="1297" height="645" alt="Screenshot 2026-05-12 011216" src="https://github.com/user-attachments/assets/62e14fcb-15b8-478b-a23d-b01878f87c9c" />
 
 ## Architecture
 

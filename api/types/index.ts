@@ -48,7 +48,6 @@ export type MessageToEngine = {
 
 export const ORDER_PLACED = "ORDER_PLACED";
 export const ORDER_CANCELLED = "ORDER_CANCELLED";
-// export const ON_RAMP = "ON_RAMP";
 
 export const DEPTH = "DEPTH";
 export const OPEN_ORDERS = "OPEN_ORDERS";

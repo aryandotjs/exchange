@@ -16,7 +16,6 @@
     "dev": "npm run dev:backend",
     "dev:mm": "tsx watch mm/index.ts",
     "dev:frontend": "cd frontend/exchange && npm run dev"
-
   },
   "repository": {
     "type": "git",

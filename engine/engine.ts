@@ -2,7 +2,6 @@ import fs from "fs"
 
 import { Fill, Order, OrderBook, userOpenOrders } from "./orderbook"
 import { json } from "stream/consumers"
-// import { create } from "domain"
 import { RedisManager } from "./redismanager"
 import { MessageFromApi } from "./types"
 import { data } from "react-router-dom"
@@ -509,7 +508,6 @@ export class Engine{
             }
         )})
     }
-// on trade happend 
     async publishDepthUpdatesInWs(price : string , market :string , fills : Fill[] ,side :string) {
         let redis = await RedisManager.getInstance();
         let orderbook  = this.OrderBooks.find( (a) => {

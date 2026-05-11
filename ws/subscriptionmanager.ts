@@ -32,7 +32,7 @@ export class SubscriptionManager {
         this.reverseSubscriptions.set(subscription,(this.reverseSubscriptions.get(subscription)||[]).concat(id))
 
         if(this.reverseSubscriptions.get(subscription)?.length == 1){
-            console.log(`${subscription} listinging this ong pubsub `)
+            console.log(`${subscription} listinging this on pubsub `)
             this.redisClient.subscribe(subscription,this.redisCallbackHandler)
         }
     }
@@ -52,7 +52,7 @@ export class SubscriptionManager {
             if (this.reverseSubscriptions.get(subscription)?.length == 0) {
                 this.reverseSubscriptions.delete(subscription)
                 this.redisClient.unsubscribe(subscription);
-                console.log(`${subscription} closed susbcirption  `)
+                console.log(`${subscription} closed susbcirption `)
             }
         }
     }  

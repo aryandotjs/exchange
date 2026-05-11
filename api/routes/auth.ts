@@ -60,7 +60,7 @@ routerforauth.post("/signin",async(req,res)=>{
 
         const token = jwt.sign(
             {userId : user.userid},
-            process.env.JWT_SECRET || "123sec",
+            process.env.JWT_SECRET || "",
             { expiresIn : "24h"}
         ) 
         res.json({

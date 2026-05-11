@@ -5,7 +5,6 @@ import { MessageFromApi } from "../../engine/types";
 import { MessageFromOrderbook } from "../types";
 import { pgClient } from "../db";
 import { authmiddleware } from "../middleware";
-import { error } from "node:console";
 export const routerforOrders = Router()
 
 
@@ -31,37 +30,60 @@ routerforOrders.post("/createOrder", authmiddleware,async(req,res)=>{
      })
      res.json(response.payload)
     }catch(err:any){
+        console.log("erre aaya nhai ordercreate me",market)
        res.status(400).json({
         error : err.message
        })
     }
 })
 
-routerforOrders.delete("/cancleOrder", async(req,res)=>{
-    const { orderId , market , userId } = req.body 
-    const response : MessageFromOrderbook = await apiRedisManager.getinstance().sendAndAwait({
+routerforOrders.delete("/cancleOrder", async (req, res) => {
+  const { orderId, market, userId } = req.body;
+  try {
+
+    const response: MessageFromOrderbook =
+      await apiRedisManager.getinstance().sendAndAwait({
         type: "CANCEL_ORDER",
         data: {
-            orderId,
-            market,
-            userId
-        }
-    })
-    res.json(response.payload)
-})
+          orderId,
+          market,
+          userId,
+        },
+      });
 
-routerforOrders.get("/openOrder",authmiddleware ,async(req,res)=>{
-     const userId = (req as any).userId
-     
-     const response : MessageFromOrderbook = await apiRedisManager.getinstance().sendAndAwait({
-            type: "GET_OPEN_ORDERS",
-            data: {
-                userId: userId ,
-                market: req.query.market as string
-            }
-     })
-     res.json(response.payload)
-})
+    res.json(response.payload);
+  } catch (err: any) {
+        console.log("erre aaya nhai cancleOrder     --create me",market)
+
+    res.status(400).json({
+      error: err.message,
+    });
+  }
+});
+
+routerforOrders.get("/openOrder", authmiddleware, async (req, res) => {
+  const userId = (req as any).userId;
+  try {
+
+    const response: MessageFromOrderbook =
+      await apiRedisManager.getinstance().sendAndAwait({
+        type: "GET_OPEN_ORDERS",
+        data: {
+          userId,
+          market: req.query.market as string,
+        },
+      });
+
+    res.json(response.payload);
+  } catch (err: any) {
+        console.log("erre aaya nhai opemn  == Order     --create me",req.query.market)
+
+    res.status(400).json({
+      error: err.message,
+    });
+  }
+});
+
 
 routerforOrders.get("/orderHistory",authmiddleware,async(req,res)=>{
          const userId = (req as any).userId

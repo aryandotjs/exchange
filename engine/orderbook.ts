@@ -1,4 +1,3 @@
-import strict from "assert/strict";
 
 export interface Order{
     price : number ,

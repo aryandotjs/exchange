@@ -100,4 +100,3 @@ async function initilailizeDb(){
 } 
 
 initilailizeDb().catch(console.error)
-// 8238664405

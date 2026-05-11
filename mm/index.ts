@@ -1,11 +1,11 @@
 import axios from "axios";
 import jwt  from "jsonwebtoken";
-
+import "dotenv/config"
 const BASE_URL = "http://localhost:3001";
 const totalasks = 50 ;
 const totalbids = 50 ;
 let userid  = 1;
-let jwttoken = jwt.sign({userId : userid},"secret123",{expiresIn : "24h"})
+let jwttoken = jwt.sign({userId : userid}, process.env.JWT_SECRET || "" ,{expiresIn : "24h"})
 
 
 let priceMap = new Map<string,number>()
@@ -13,7 +13,6 @@ let lastfetchtimeMap = new Map<string,number>()
 
 
 async function main(market:string){
-    
     try {
          await fetchPrice(market) 
         const response = await axios.get( `${BASE_URL}/api/v1/orders/openOrder`,{
@@ -28,11 +27,12 @@ async function main(market:string){
 
         const bidslength = marketOrders.filter((a:any)=> a.side === "buy" ).length 
         const asklength = marketOrders.filter((a:any)=> a.side === "sell" ).length
-        // console.log("ask and bids length ",bidslength, asklength)
+
+
         let price =  priceMap.get(market) || 0 ;
         let removedbids = await removeBids(marketOrders , price , market) 
         let removedasks = await removeAsks(marketOrders , price , market) 
-        // console.log("remoced orders:" , removedbids , removedasks)
+
 
         let bidsToAdd = totalbids -  bidslength - removedbids ;
         let asksToAdd = totalasks - asklength - removedasks ;
@@ -40,9 +40,6 @@ async function main(market:string){
         while(bidsToAdd > 0 || asksToAdd > 0){
             const a = Math.random()
             if (a < 0.02 && a > 0.018) {
-
-                console.log("hua")
-
                 const quantity = (0.001+Math.random()/10).toFixed(3).toString()
                 const offsset = Number(Math.random().toFixed(3))
             try{
@@ -83,24 +80,23 @@ async function main(market:string){
                 },{ headers : { Authorization : `Bearer ${jwttoken}`}})
                 asksToAdd--;
         }}
-
-        await new Promise(resolve => {
-             setTimeout(resolve, 500)}
-            );
-
-        main(market);
          
     }catch (err: any) {
         console.log("STATUS:", err.response?.status);
         console.log("DATA:", err.response?.data);
-    }      
+    }finally{
+         setTimeout(() => {
+         main(market);
+    }, 500);
+    }     
 }
 
 async function start(){
     await createUser()
-    await main("SOL_USD")
     await main("BTC_USD")
+    await main("SOL_USD")
     await main("ETH_USD")
+
 }
 start()
 
@@ -117,7 +113,7 @@ async function removeBids(openOrders : any[] , price : number , market : string)
                 }))
             }
         })
-        await Promise.all(promises)    
+        await Promise.allSettled(promises)    
         return promises.length;
 }
 
@@ -134,7 +130,7 @@ async function removeAsks(openOrders : any[] , price : number, market : string) 
                 }))
             }
         })
-        await Promise.all(promises)    
+        await Promise.allSettled(promises)    
         return promises.length;
 }
 
@@ -147,7 +143,7 @@ async function removeAsks(openOrders : any[] , price : number, market : string) 
             password : "121212"
         })
         userid = response.data.user.userid
-           jwttoken = jwt.sign({userId : userid},"secret123",{expiresIn : "24h"})
+           jwttoken = jwt.sign({userId : userid}, process.env.JWT_SECRET || "",{expiresIn : "24h"})
    
 
         } catch (err: any) {

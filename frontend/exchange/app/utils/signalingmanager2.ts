@@ -47,7 +47,6 @@ export class signalingManager2 {
                            const asks = data.a[0]
                            const bids = data.b[0]
                            callbackfn(asks,bids)
-                           
                         }
                         if (type == "trade") {
                             callbackfn(data)

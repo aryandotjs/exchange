@@ -3,24 +3,34 @@
 
 A microservices-style crypto exchange prototype built with Node.js and TypeScript. It includes a REST API, matching engine, Redis-based messaging, WebSocket market streams, TimescaleDB persistence, a market maker, external market-data views, and a Next.js trading frontend.
 
-<!-- ![Architecture](./assets/architecture.png) -->
+
+
 ## Architecture
 
-<img width="1347" height="657" alt="Screenshot 2026-05-12 021848" src="https://github.com/user-attachments/assets/2c9cf186-e476-44a3-8ae8-ce712cd06260" />
+<img width="1347" height="657" alt="Screenshot 2026-05-12 021848" src="https://github.com/user-attachments/assets/cb839470-fa2c-4029-9067-9ed4151494e0" />
 
 ## Screenshots
 
-### Trading Page
+### Markets
 
-<img width="1906" height="838" alt="Full trading page" src="https://github.com/user-attachments/assets/2a464c50-baa8-40fc-9a72-ff180fe28d2d" />
+<img width="1918" height="861" alt="Markets landing page" src="https://github.com/user-attachments/assets/1f61c2a6-f437-4349-b315-85331f9fa880" />
 
-### Recent Trades
+### Trading Page with Order Book
 
-<img width="395" height="651" alt="Recent trades panel" src="https://github.com/user-attachments/assets/657a46e8-ec33-472c-b856-6c93828e2404" />
+<img width="1918" height="852" alt="Trading page with order book" src="https://github.com/user-attachments/assets/2f20cc41-3617-4ace-82cc-58c65c8e53a3" />
+
+### Trading Page with Recent Trades
+
+<img width="1905" height="852" alt="Trading page with recent trades" src="https://github.com/user-attachments/assets/034f4125-6e28-49ff-a62e-84a5aeede684" />
+
+### Account Balance
+
+<img width="1245" height="748" alt="Account balance page" src="https://github.com/user-attachments/assets/0a80362c-8d13-43cb-83a1-a7f5033f554c" />
 
 ### Order History
 
-<img width="1436" height="542" alt="Order history page" src="https://github.com/user-attachments/assets/b8da424f-96ae-44fd-b272-eb81196e6228" />
+<img width="1918" height="832" alt="Fill history page" src="https://github.com/user-attachments/assets/68e29fad-393d-4929-8dbf-8fbdd65566b4" />
+
 
 
 
